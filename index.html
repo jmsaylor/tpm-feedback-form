@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Project Mix Feedback Form</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            align-items: center;
+        }
+     
+
+        #rating {
+                background-color: rgba(240, 50, 255, .7);
+        }
+        #ratingTag {
+            font-size: large;
+        }
+
+    </style>
+</head>
+<body>    
+    <h1 id="title">Tech Project Mix Feedback</h1>
+
+<form onSubmit="formSubmit(event)">
+    <div id="rating">
+        <h2>Rate our server from 1 (worst) to 10 (best)</h2>
+        <label id="ratingTag" for="oneRating">1</label>
+        <input type="radio" name="rating" id="oneRating" value="1">
+        <input type="radio" name="rating" value="2">
+        <input type="radio" name="rating" value="3">
+        <input type="radio" name="rating" value="4">
+        <input type="radio" name="rating" value="5">
+        <input type="radio" name="rating" value="6">
+        <input type="radio" name="rating" value="7">
+        <input type="radio" name="rating" value="8">
+        <input type="radio" name="rating" value="9">
+        <input type="radio" name="rating" id="tenRating" value="10">
+        <label id="ratingTag" for="tenRating">10</label>
+    </div>
+        
+        <h3>What's your favorite thing about Tech Project Mix?</h3><br>
+        <textarea name="favoriteThing" id="favoriteThing" cols="50" rows="5" ></textarea><br>
+        <h3>Do you have any ideas for Tech Project Mix? Please share your ideas for the future.</h3><br>
+        <textarea name="ideas" id="ideas" cols="50" rows="5"></textarea><br>
+        <h3>What's your least favorite thing about the server. Tell us what we're doing wrong.</h3>
+        <textarea name="leastFavoriteThing" id="leastFavoriteThing" cols="50" rows="5"></textarea>
+
+        <h3>Why did you join the Tech Project Mix Community</h3>
+        <input type="checkbox" id="learnCode" name="reason" value="learnCode">
+        <label for="learnCode">To Learn How to Code</label><br>
+        <input type="checkbox" id="makeFriends" name="reason" value="makeFriends">
+        <label for="makeFriends">To Make Friends</label><br>
+        <input type="checkbox" id="findCollaborators" name="reason" value="findCollaborators">
+        <label for="findCollaborators">Find Collaborators</label><br>
+        <input type="checkbox" id="chat" name="reason" value="chat">
+        <label for="chat">Chat / Socialize</label><br>
+
+
+        <input type="submit">
+    </form>
+    <script>
+        const formSubmit = (e) => {
+            e.preventDefault()
+            let result = {}
+            result.favoriteThings = document.getElementById('favoriteThing').value;
+            result.ideas = document.getElementById('ideas').value;
+            result.leastFavoriteThing = document.getElementById('leastFavoriteThing').value;
+            result.reasons = getSelection("reason")
+            result.rating = getRating();
+
+            console.log(result)
+        }
+
+        const getRating = () => {
+            return getSelection("rating")[0]
+        }
+
+        const getSelection = (group) => {
+            const elements = document.getElementsByName(group);
+            let result = []
+            elements.forEach(element => {
+                if (element.checked) {
+                    result.push(element.value)
+                }
+            })
+            return result;
+        }
+
+    </script>
+</body>
+</html>
